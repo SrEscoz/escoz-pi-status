@@ -68,6 +68,24 @@ public class PiServiceController {
 				.body(PiServiceMapper.INSTANCE.toDTO(piService));
 	}
 
+	@PutMapping("/{id}")
+	public ResponseEntity<PiService> updateService(@PathVariable long id,
+												   @Valid @RequestBody PiServiceInDTO piServiceInDTO,
+												   BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			String field = Objects.requireNonNull(bindingResult.getFieldError()).getField();
+			throw new InvalidArgumentException(field);
+		}
+
+		LOG.info("Actualizando el servicio -> {} / Con los valores -> {}", id, piServiceInDTO);
+		PiService piService = service.updateService(id, PiServiceMapper.INSTANCE.toEntity(piServiceInDTO));
+
+		return ResponseEntity
+				.ok()
+				.body(piService);
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<BasicResponse> deleteService(@PathVariable long id) {
 
@@ -76,7 +94,7 @@ public class PiServiceController {
 
 		return ResponseEntity
 				.ok()
-				.body(new BasicResponse("The service was deleted"));
+				.body(new BasicResponse("The service with id: " + id + " was deleted"));
 	}
 
 }

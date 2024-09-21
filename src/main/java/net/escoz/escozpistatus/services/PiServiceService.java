@@ -12,5 +12,8 @@ public interface PiServiceService {
 
 	PiService addService(PiService piService);
 
+	PiService updateService(long id, PiService entity);
+
 	void deleteService(long id);
+
 }

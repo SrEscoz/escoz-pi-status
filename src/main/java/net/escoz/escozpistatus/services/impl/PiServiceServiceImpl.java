@@ -36,13 +36,33 @@ public class PiServiceServiceImpl implements PiServiceService {
 
 		// Comprobamos que no exista otra url igual
 		serviceRepository.findByUrl(piService.getUrl())
-				.ifPresent(e -> {
-					LOG.error("Entidad duplicada -> Nombre: {} / URL: {}", piService.getName(), piService.getUrl());
+				.ifPresent(service -> {
+					LOG.error("Servicio duplicado -> Nombre: {} / URL: {}", piService.getName(), piService.getUrl());
 
 					throw new DuplicateEntityException("Service '" + piService.getName()
 							+ "' with the URL: " + piService.getUrl() + " already exists",
 							new Throwable());
 				});
+
+		return serviceRepository.save(piService);
+	}
+
+	@Override
+	public PiService updateService(long id, PiService piService) {
+
+		PiService oldPiService = getService(id);
+
+		// Comprobamos que no exista otra url igual
+		serviceRepository.findByUrl(piService.getUrl())
+				.ifPresent(service -> {
+					if (service.getId() != id) {
+						LOG.error("URL -> {} ya en uso", service.getUrl());
+
+						throw new DuplicateEntityException("Already exists a service with the given URL: " + oldPiService.getUrl(),
+								new Throwable());
+					}
+				});
+		piService.setId(oldPiService.getId());
 
 		return serviceRepository.save(piService);
 	}
