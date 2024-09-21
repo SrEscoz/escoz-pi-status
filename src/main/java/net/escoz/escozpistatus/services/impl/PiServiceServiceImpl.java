@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PiServiceServiceImpl implements PiServiceService {
@@ -17,6 +19,11 @@ public class PiServiceServiceImpl implements PiServiceService {
 	private final static Logger LOG = LoggerFactory.getLogger(PiServiceServiceImpl.class);
 
 	private PiServiceRepository serviceRepository;
+
+	@Override
+	public List<PiService> getAllServices() {
+		return serviceRepository.findAll();
+	}
 
 	@Override
 	public PiService getService(long id) {

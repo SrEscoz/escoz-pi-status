@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -26,6 +27,17 @@ public class PiServiceController {
 	private static final Logger LOG = LoggerFactory.getLogger(PiServiceController.class);
 
 	private PiServiceService service;
+
+	@GetMapping
+	public ResponseEntity<List<PiServiceOutDTO>> getAllServices() {
+
+		LOG.info("Obtención de todos los servicios");
+		List<PiService> services = service.getAllServices();
+
+		return ResponseEntity
+				.ok()
+				.body(PiServiceMapper.INSTANCE.toDTOList(services));
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PiServiceOutDTO> getService(@PathVariable long id) {
