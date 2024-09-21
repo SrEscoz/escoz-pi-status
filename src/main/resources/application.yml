@@ -1,0 +1,18 @@
+#Configuración general
+server:
+  port: 8020
+spring:
+  application:
+    name: escoz-pi-status
+  profiles:
+    active: dev
+
+  # Configuración de la BB DD
+  datasource:
+    url: # Ver perfil
+    username: # Ver perfil
+    password: # Ver perfil
+    driver-class-name: # Ver perfil
+  jpa:
+    hibernate:
+      ddl-auto: # Ver perfil
