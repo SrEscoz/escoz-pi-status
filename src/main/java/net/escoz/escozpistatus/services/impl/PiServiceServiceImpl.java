@@ -46,4 +46,9 @@ public class PiServiceServiceImpl implements PiServiceService {
 
 		return serviceRepository.save(piService);
 	}
+
+	@Override
+	public void deleteService(long id) {
+		serviceRepository.delete(getService(id));
+	}
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import net.escoz.escozpistatus.entities.PiService;
 import net.escoz.escozpistatus.entities.mappers.PiServiceMapper;
 import net.escoz.escozpistatus.exceptions.InvalidArgumentException;
+import net.escoz.escozpistatus.models.BasicResponse;
 import net.escoz.escozpistatus.models.requests.PiServiceInDTO;
 import net.escoz.escozpistatus.models.responses.PiServiceOutDTO;
 import net.escoz.escozpistatus.services.PiServiceService;
@@ -65,6 +66,17 @@ public class PiServiceController {
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(PiServiceMapper.INSTANCE.toDTO(piService));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<BasicResponse> deleteService(@PathVariable long id) {
+
+		LOG.info("Eliminando el servicio con id -> {}", id);
+		service.deleteService(id);
+
+		return ResponseEntity
+				.ok()
+				.body(new BasicResponse("The service was deleted"));
 	}
 
 }

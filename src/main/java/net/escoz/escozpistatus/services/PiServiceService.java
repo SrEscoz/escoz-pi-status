@@ -11,4 +11,6 @@ public interface PiServiceService {
 	PiService getService(long id);
 
 	PiService addService(PiService piService);
+
+	void deleteService(long id);
 }
