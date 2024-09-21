@@ -1,6 +1,7 @@
 package net.escoz.escozpistatus.controllers;
 
 import net.escoz.escozpistatus.exceptions.DuplicateEntityException;
+import net.escoz.escozpistatus.exceptions.EntityNotFoundException;
 import net.escoz.escozpistatus.exceptions.InvalidArgumentException;
 import net.escoz.escozpistatus.models.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,6 @@ public class RestExceptionController extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler({DuplicateEntityException.class})
 	protected ResponseEntity<ErrorResponse> handleDuplicatedEntityException(DuplicateEntityException exception) {
-
 		ErrorResponse response = ErrorResponse.builder()
 				.timestamp(Instant.now().toString())
 				.status(HttpStatus.CONFLICT.value())
@@ -31,7 +31,6 @@ public class RestExceptionController extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler({InvalidArgumentException.class})
 	protected ResponseEntity<ErrorResponse> handleInvalidArgumentException(InvalidArgumentException exception) {
-
 		ErrorResponse response = ErrorResponse.builder()
 				.timestamp(Instant.now().toString())
 				.status(HttpStatus.BAD_REQUEST.value())
@@ -40,6 +39,19 @@ public class RestExceptionController extends ResponseEntityExceptionHandler {
 
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
+				.body(response);
+	}
+
+	@ExceptionHandler({EntityNotFoundException.class})
+	protected ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException exception) {
+		ErrorResponse response = ErrorResponse.builder()
+				.timestamp(Instant.now().toString())
+				.status(HttpStatus.NOT_FOUND.value())
+				.error(exception.getMessage())
+				.build();
+
+		return ResponseEntity
+				.status(HttpStatus.NOT_FOUND)
 				.body(response);
 	}
 }

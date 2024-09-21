@@ -3,6 +3,7 @@ package net.escoz.escozpistatus.services.impl;
 import lombok.AllArgsConstructor;
 import net.escoz.escozpistatus.entities.PiService;
 import net.escoz.escozpistatus.exceptions.DuplicateEntityException;
+import net.escoz.escozpistatus.exceptions.EntityNotFoundException;
 import net.escoz.escozpistatus.repositories.PiServiceRepository;
 import net.escoz.escozpistatus.services.PiServiceService;
 import org.slf4j.Logger;
@@ -18,7 +19,13 @@ public class PiServiceServiceImpl implements PiServiceService {
 	private PiServiceRepository serviceRepository;
 
 	@Override
-	public PiService createService(PiService piService) {
+	public PiService getService(long id) {
+		return serviceRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
+	}
+
+	@Override
+	public PiService addService(PiService piService) {
 
 		// Comprobamos que no exista otra url igual
 		serviceRepository.findByUrl(piService.getUrl())

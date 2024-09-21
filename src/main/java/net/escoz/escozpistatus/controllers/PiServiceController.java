@@ -14,10 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -30,9 +27,20 @@ public class PiServiceController {
 
 	private PiServiceService service;
 
+	@GetMapping("/{id}")
+	public ResponseEntity<PiServiceOutDTO> getService(@PathVariable long id) {
+
+		LOG.info("Obtención del servicio con id -> {}", id);
+		PiService piService = service.getService(id);
+
+		return ResponseEntity
+				.ok()
+				.body(PiServiceMapper.INSTANCE.toDTO(piService));
+	}
+
 	@PostMapping
-	public ResponseEntity<PiServiceOutDTO> createService(@RequestBody @Valid PiServiceInDTO piServiceInDTO,
-														 BindingResult bindingResult) {
+	public ResponseEntity<PiServiceOutDTO> addService(@RequestBody @Valid PiServiceInDTO piServiceInDTO,
+													  BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			String field = Objects.requireNonNull(bindingResult.getFieldError()).getField();
@@ -40,7 +48,7 @@ public class PiServiceController {
 		}
 
 		LOG.info("Creando un nuevo servicio -> {}", Utils.objectToJson(piServiceInDTO));
-		PiService piService = service.createService(PiServiceMapper.INSTANCE.toEntity(piServiceInDTO));
+		PiService piService = service.addService(PiServiceMapper.INSTANCE.toEntity(piServiceInDTO));
 
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
