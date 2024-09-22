@@ -1,98 +1,152 @@
-/* Estilos globales */
+:root {
+    --bg-color: #0D1117;
+    --text-color: #C9D1D9;
+    --banner-bg: #161B22;
+    --status-operational: #22D07A;
+    --status-down: #D02222;
+}
+
+html, body {
+    height: 100%;
+    margin: 0; /* Asegurarse de que no haya márgenes */
+    overflow-x: hidden; /* Evitar el desbordamiento horizontal */
+}
+
 body {
-    background-color: #0A2540; /* Azul oscuro */
-    color: #D1D5DB; /* Gris claro */
-    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Establecer un espacio mínimo para el contenedor principal */
+main {
+    flex: 1; /* Hace que el main ocupe el espacio restante */
+}
+
+/* Estilos generales */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Banner */
+.banner {
+    position: relative;
+    background-color: var(--banner-bg);
+    padding: 20px 0;
+    text-align: center;
+    height: 20vh;
+}
+
+.logo {
+    width: 10%;
+    max-width: 50px;
+    height: auto;
+    margin: 20px;
+}
+
+h1 {
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.check-icon {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: var(--status-operational);
+}
+
+/* Contenedor principal */
+.container {
+    width: 80%;
+    max-width: 1200px; /* Limitar el ancho máximo */
+    margin: 20px auto 0 auto; /* Centrar el contenedor */
+    padding: 20px 0;
+}
+
+/* Estilos para la cuadrícula de servicios */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+}
+
+/* Estilos para cada tarjeta */
+.service-card {
+    background-color: var(--banner-bg);
+    border: 1px solid #30363D;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado con título e icono */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Iconos de estado */
+.status-icon {
+    font-size: 1.5rem;
+}
+
+.status-operational {
+    color: var(--status-operational);
+}
+
+.status-down {
+    color: var(--status-down);
+}
+
+/* Títulos y texto */
+.service-card h2 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.service-card .description,
+.service-card .comments {
+    font-size: 0.85rem;
+    color: #8B949E;
+    margin-top: 10px;
+}
+
+p {
     margin: 0;
     padding: 0;
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-    padding: 20px 0;
-}
-
-h1 {
+/* Footer */
+.footer {
+    background-color: #161B22;
+    color: var(--text-color);
     text-align: center;
-    margin: 20px 0;
-    color: #22D07A; /* Verde para el texto principal */
-}
-
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.service-card {
-    background-color: #102A43; /* Un tono más claro de azul oscuro */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: relative;
+    left: 0; /* Asegura que esté alineado a la izquierda */
+    margin-top: 20px; /* Espacio superior para separar del contenido anterior */
 }
 
-.service-card h2 {
-    margin: 0;
-    color: #22D07A; /* Verde */
-}
-
-.status {
-    color: #22D07A; /* Verde para el estado operativo */
-    margin: 10px 0;
-}
-
-.comments {
-    font-size: 0.9em;
-    color: #A0AEC0; /* Gris para comentarios adicionales */
-}
-
-.icon {
-    float: right;
-    color: #22D07A; /* Icono verde para el estado */
-}
-
-/* Botón de estado general */
-.system-status {
-    text-align: center;
-    background-color: #22D07A; /* Fondo verde */
-    color: #102A43; /* Texto en azul oscuro */
-    padding: 10px 0;
-    border-radius: 8px;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-/* Gráficos y estadísticas */
-.stats {
-    margin-top: 40px;
-}
-
-.uptime-bar {
-    background-color: #22D07A; /* Barra verde para el uptime */
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.chart-container {
-    background-color: #102A43; /* Fondo de la gráfica */
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 30px;
-}
-
-.chart-title {
-    font-size: 1.1em;
-    color: #D1D5DB; /* Gris claro */
-}
-
-/* Comentarios y texto adicional */
-.timer {
-    font-size: 0.9em; /* Tamaño de fuente más pequeño */
-    color: #A0AEC0; /* Gris para comentarios adicionales */
-    text-align: center; /* Centrar el texto */
-    margin-bottom: 20px; /* Espaciado inferior */
-
+.footer-logo {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
 }
