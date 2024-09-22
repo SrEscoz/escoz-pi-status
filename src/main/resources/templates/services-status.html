@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de los Servicios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/service-status.css}">
+    <script>
+        function refreshServices() {
+            fetch('/service-cards')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.service-grid').innerHTML = data;
+
+                    // Actualizar la fecha y hora de la última actualización
+                    const now = new Date();
+                    const lastUpdated = now.toLocaleString(); // Formato local
+                    document.getElementById('lastUpdated').textContent = `Última actualización: ${lastUpdated}`;
+                })
+                .catch(error => console.error('Error al cargar los servicios:', error));
+        }
+
+        // Refresca los datos cada 30 segundos
+        setInterval(refreshServices, 30000);
+
+        // Mostrar la fecha y hora de la última actualización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshServices(); // Realiza la primera actualización al cargar
+        });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>¡Todos los sistemas están operativos!</h1>
+    <div id="lastUpdated" class="timer">Última actualización: N/A</div>
+    <div class="service-grid">
+        <div th:each="service : ${services}" class="service-card">
+            <h2 th:text="${service.name}">Nombre del Servicio</h2>
+            <span class="icon"><i class="fas fa-check-circle"></i></span>
+            <p th:text="${service.description}">Descripción del servicio</p>
+            <p class="status" th:text="${service.status}">Estado</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

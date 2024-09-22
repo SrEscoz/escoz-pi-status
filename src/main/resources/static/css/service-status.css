@@ -1,0 +1,98 @@
+/* Estilos globales */
+body {
+    background-color: #0A2540; /* Azul oscuro */
+    color: #D1D5DB; /* Gris claro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px 0;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #22D07A; /* Verde para el texto principal */
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #102A43; /* Un tono más claro de azul oscuro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.service-card h2 {
+    margin: 0;
+    color: #22D07A; /* Verde */
+}
+
+.status {
+    color: #22D07A; /* Verde para el estado operativo */
+    margin: 10px 0;
+}
+
+.comments {
+    font-size: 0.9em;
+    color: #A0AEC0; /* Gris para comentarios adicionales */
+}
+
+.icon {
+    float: right;
+    color: #22D07A; /* Icono verde para el estado */
+}
+
+/* Botón de estado general */
+.system-status {
+    text-align: center;
+    background-color: #22D07A; /* Fondo verde */
+    color: #102A43; /* Texto en azul oscuro */
+    padding: 10px 0;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Gráficos y estadísticas */
+.stats {
+    margin-top: 40px;
+}
+
+.uptime-bar {
+    background-color: #22D07A; /* Barra verde para el uptime */
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.chart-container {
+    background-color: #102A43; /* Fondo de la gráfica */
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.chart-title {
+    font-size: 1.1em;
+    color: #D1D5DB; /* Gris claro */
+}
+
+/* Comentarios y texto adicional */
+.timer {
+    font-size: 0.9em; /* Tamaño de fuente más pequeño */
+    color: #A0AEC0; /* Gris para comentarios adicionales */
+    text-align: center; /* Centrar el texto */
+    margin-bottom: 20px; /* Espaciado inferior */
+
+}
