@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de los Servicios</title>
+    <link rel="stylesheet" th:href="@{/css/service-status.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<main>
+    <div class="banner">
+        <img src="https://inwfile.com/s-o/7f0qz1.png" alt="Logo" class="logo">
+        <div class="check-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Todos los sistemas están operativos!</h1>
+    </div>
+
+    <!-- Nuevo párrafo con el enlace de ayuda -->
+    <div class="help-message">
+        <p>¿Tienes problemas con los servicios? <a href="#" class="help-link">Contáctanos aquí</a></p>
+    </div>
+
+    <div class="container">
+        <div class="service-grid">
+            <div th:each="service : ${services}" class="service-card">
+                <div class="header">
+                    <h2 th:text="${service.name}">Nombre del Servicio</h2>
+                    <span class="icon status-icon"
+                          th:classappend="${service.status == 'activo'} ? 'fas fa-check-circle status-operational' : 'fas fa-times-circle status-down'">
+                    </span>
+                </div>
+                <p class="status"
+                   th:text="${service.status}"
+                   th:classappend="${service.status == 'activo'} ? 'status-operational' : 'status-down'">Operativo</p>
+
+                <p class="description" th:text="${service.description}">Descripción del servicio</p>
+                <p class="comments" th:if="${service.comments}" th:text="${service.comments}">Comentarios
+                    adicionales</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <img src="https://inwfile.com/s-o/7f0qz1.png" alt="Logo" class="footer-logo">
+    <p>&copy; 2024 escoz.net. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
