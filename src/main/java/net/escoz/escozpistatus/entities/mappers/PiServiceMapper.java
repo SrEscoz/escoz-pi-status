@@ -15,6 +15,7 @@ public interface PiServiceMapper {
 	PiServiceMapper INSTANCE = Mappers.getMapper(PiServiceMapper.class);
 
 	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "active", defaultValue = "true")
 	PiService toEntity(PiServiceInDTO piServiceInDTO);
 
 	PiServiceOutDTO toDTO(PiService piService);

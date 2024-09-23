@@ -15,10 +15,11 @@ public class PiServiceInDTO {
 
 	private String description;
 
-	private String status;
+	private Boolean active;
+
+	private Boolean hidden;
 
 	@NotBlank
 	private String url;
 
-	private String comments;
 }

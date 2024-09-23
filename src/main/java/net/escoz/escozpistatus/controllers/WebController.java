@@ -19,7 +19,11 @@ public class WebController {
 	@RequestMapping("/")
 	public String getIndex(Model model) {
 		List<PiService> piServices = piServiceService.getAllServices();
+		long inactiveCount = piServices.stream()
+				.filter(service -> !service.getActive()).count();
+
 		model.addAttribute("services", PiServiceMapper.INSTANCE.toDTOList(piServices));
+		model.addAttribute("inactiveCount", inactiveCount);
 
 		return "services-status";
 	}

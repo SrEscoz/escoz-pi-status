@@ -15,11 +15,10 @@ public class PiService {
 
 	private String name;
 	private String description;
-	private String status;
+	private Boolean active;
+	private Boolean hidden;
 
 	@Column(unique = true)
 	private String url;
-
-	private String comments;
 
 }

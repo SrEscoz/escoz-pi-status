@@ -12,8 +12,8 @@ public class PiServiceOutDTO {
 	private long id;
 	private String name;
 	private String description;
-	private String status;
+	private Boolean active;
+	private Boolean hidden;
 	private String url;
-	private String comments;
 
 }
