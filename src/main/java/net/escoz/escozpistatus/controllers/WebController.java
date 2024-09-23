@@ -6,7 +6,6 @@ import net.escoz.escozpistatus.entities.mappers.PiServiceMapper;
 import net.escoz.escozpistatus.services.PiServiceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -25,11 +24,4 @@ public class WebController {
 		return "services-status";
 	}
 
-	@GetMapping("/service-cards")
-	public String getServiceCards(Model model) {
-		List<PiService> piServices = piServiceService.getAllServices();
-		model.addAttribute("services", PiServiceMapper.INSTANCE.toDTOList(piServices));
-
-		return "fragments :: serviceGrid";
-	}
 }
