@@ -8,8 +8,8 @@
 
 html, body {
     height: 100%;
-    margin: 0; /* Asegurarse de que no haya márgenes */
-    overflow-x: hidden; /* Evitar el desbordamiento horizontal */
+    margin: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -17,12 +17,10 @@ body {
     flex-direction: column;
 }
 
-/* Establecer un espacio mínimo para el contenedor principal */
 main {
-    flex: 1; /* Hace que el main ocupe el espacio restante */
+    flex: 1;
 }
 
-/* Estilos generales */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -34,44 +32,63 @@ body {
     position: relative;
     background-color: var(--banner-bg);
     padding: 20px 0;
-    text-align: center;
-    height: 20vh;
+    min-height: 20vh; /* Reducimos el tamaño del banner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
+/* Logo en la esquina superior izquierda */
 .logo {
-    width: 10%;
-    max-width: 50px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
     height: auto;
-    margin: 20px;
 }
 
+/* Ícono de verificación centrado encima del texto */
+.check-icon {
+    font-size: 2.5rem;
+    color: var(--status-operational);
+    margin-bottom: 10px;
+}
+
+/* Título centrado */
 h1 {
     font-size: xx-large;
     margin: 0;
-    padding: 0;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    text-align: center;
+    color: var(--text-color);
 }
 
-.check-icon {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5rem;
+/* Mensaje de ayuda debajo del banner */
+.help-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.help-link {
     color: var(--status-operational);
+    text-decoration: underline;
+}
+
+.help-link:hover {
+    color: #1ca160;
+    text-decoration: none;
 }
 
 /* Contenedor principal */
 .container {
     width: 80%;
-    max-width: 1200px; /* Limitar el ancho máximo */
-    margin: 20px auto 0 auto; /* Centrar el contenedor */
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
     padding: 20px 0;
 }
 
-/* Estilos para la cuadrícula de servicios */
+/* Cuadrícula de servicios */
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -79,7 +96,7 @@ h1 {
     padding-top: 20px;
 }
 
-/* Estilos para cada tarjeta */
+/* Tarjetas de servicio */
 .service-card {
     background-color: var(--banner-bg);
     border: 1px solid #30363D;
@@ -94,7 +111,6 @@ h1 {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Encabezado con título e icono */
 .header {
     display: flex;
     justify-content: space-between;
@@ -115,7 +131,6 @@ h1 {
     color: var(--status-down);
 }
 
-/* Títulos y texto */
 .service-card h2 {
     font-size: 1.2rem;
     color: var(--text-color);
@@ -141,12 +156,27 @@ p {
     padding: 20px;
     width: 100%;
     position: relative;
-    left: 0; /* Asegura que esté alineado a la izquierda */
-    margin-top: 20px; /* Espacio superior para separar del contenido anterior */
+    left: 0;
+    margin-top: 20px;
 }
 
 .footer-logo {
     width: 50px;
     height: auto;
     margin-bottom: 10px;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    h1 {
+        font-size: large;
+    }
+
+    .check-icon {
+        font-size: 2rem;
+    }
+
+    .logo {
+        width: 40px; /* Tamaño más pequeño en pantallas pequeñas */
+    }
 }
