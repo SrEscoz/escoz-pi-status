@@ -17,7 +17,7 @@ public class WebController {
 	private PiServiceService piServiceService;
 
 	@RequestMapping("/")
-	public String getIndex(Model model) {
+	public String index(Model model) {
 		List<PiService> piServices = piServiceService.getAllServices();
 		long inactiveCount = piServices.stream()
 				.filter(service -> !service.getActive()).count();
@@ -25,7 +25,13 @@ public class WebController {
 		model.addAttribute("services", PiServiceMapper.INSTANCE.toDTOList(piServices));
 		model.addAttribute("inactiveCount", inactiveCount);
 
-		return "services-status";
+		return "main";
+	}
+
+	@RequestMapping("/admin/dashboard")
+	public String adminDashboard(Model model) {
+
+		return "error";
 	}
 
 }

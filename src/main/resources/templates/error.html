@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://inwfile.com/s-o/7f0qz1.png" sizes="16x16">
+    <title>EscozPi - Error</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<main>
+    <!-- Banner de error sin logo -->
+    <div class="banner error-banner">
+        <h1>Oops! Algo salío mal</h1>
+        <h2>La Raspberry se ha caído por las escaleras</h2>
+    </div>
+
+    <div class="error-code-container">
+        <h2 th:text="${status}"></h2>
+
+        <!-- Mensajes de error más genéricos -->
+        <p th:if="${errorMsg != null}" th:text="${errorMsg}"></p>
+
+        <p th:if="${errorMsg == null}">Lo sentimos, ha ocurrido un error inesperado. Por favor, intenta nuevamente más
+            tarde</p>
+    </div>
+
+    <div class="back-home">
+        <p><a href="/" class="home-link">Volver a la página principal</a></p>
+    </div>
+</main>
+
+</body>
+</html>

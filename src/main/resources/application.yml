@@ -1,6 +1,9 @@
 #Configuración general
 server:
   port: 8020
+  error:
+    whitelabel:
+      enabled: false
 spring:
   application:
     name: escoz-pi-status
