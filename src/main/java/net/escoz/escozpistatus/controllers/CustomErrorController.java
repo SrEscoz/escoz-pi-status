@@ -27,7 +27,6 @@ public class CustomErrorController implements ErrorController {
 	public String handleError(HttpServletRequest request, WebRequest webRequest, Model model) {
 		// Obtener el código de error
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-		Map<String, Object> errorDetails = errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults());
 
 		String errorMsg;
 		int statusCode;

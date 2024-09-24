@@ -11,13 +11,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -38,6 +34,7 @@ public class SecurityConfiguration {
 				.formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
 				.httpBasic(Customizer.withDefaults()) // Añadimos autenticación básica para la API
 				.csrf(AbstractHttpConfigurer::disable) // Deshabilitamos el CSRF para poder hacer llamadas POST
+				.logout(logout -> logout.logoutSuccessUrl("/").permitAll())
 				.build();
 	}
 

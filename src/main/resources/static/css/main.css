@@ -47,6 +47,32 @@ main {
     height: auto;
 }
 
+.login-button {
+    position: absolute;
+    top: 20px; /* Espacio desde la parte superior */
+    right: 20px; /* Espacio desde la derecha */
+    padding: 10px; /* Espacio interno del botón */
+    background-color: var(--accent-color); /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem; /* Tamaño de fuente */
+    display: flex; /* Para centrar el ícono */
+    align-items: center; /* Alinear verticalmente el ícono */
+    justify-content: center; /* Alinear horizontalmente el ícono */
+}
+
+.login-button:hover {
+    background-color: #7e1529; /* Cambia el color de fondo al pasar el mouse */
+}
+
+.login-button i {
+    color: white; /* Color normal del ícono */
+}
+
+
 .check-icon {
     font-size: 2.5rem;
     color: var(--status-operational);
@@ -143,7 +169,7 @@ h1 {
 }
 
 .hidden-url {
-    color: var(--accent-color)
+    color: var(--accent-color);
 }
 
 .service-link {
@@ -185,51 +211,19 @@ p {
     }
 
     .check-icon {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
-    .logo {
-        width: 40px; /* Tamaño más pequeño en pantallas pequeñas */
+    .service-card {
+        padding: 15px; /* Menos padding para pantallas pequeñas */
     }
-}
 
-/* Estilos para la página de error */
+    .service-card h2 {
+        font-size: 1rem; /* Menor tamaño de fuente para pantallas pequeñas */
+    }
 
-/* Banner de error */
-.error-banner {
-    background-color: var(--status-error); /* Fondo rojo */
-}
-
-.check-icon {
-    font-size: 2.5rem;
-    color: var(--text-color);
-    margin-bottom: 10px;
-}
-
-.status-error {
-    color: var(--status-error); /* Color de ícono para error */
-}
-
-/* Contenedor de error */
-.error-code-container {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: var(--status-error); /* Color del texto del código de error */
-}
-
-.back-home {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.home-link {
-    color: var(--status-operational);
-    text-decoration: underline;
-    font-size: 1.1rem;
-}
-
-.home-link:hover {
-    color: #1ca160;
-    text-decoration: none;
+    .login-button {
+        font-size: 0.9rem; /* Tamaño más pequeño en móviles */
+        padding: 8px 12px; /* Menos padding en móviles */
+    }
 }
