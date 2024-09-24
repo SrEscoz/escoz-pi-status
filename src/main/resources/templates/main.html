@@ -15,7 +15,7 @@
         <img src="https://inwfile.com/s-o/7f0qz1.png" alt="Logo" class="logo">
         <div class="check-icon">
             <i class="fas"
-               th:class="${inactiveCount > 0 ? 'fas fa-exclamation-triangle status-warning' : 'fa-check-circle status-operational'}"></i>
+               th:class="${inactiveCount > 0 ? 'fas fa-exclamation-triangle status-warning' : 'fas fa-check-circle status-operational'}"></i>
         </div>
         <h1 th:text="${inactiveCount > 0 ? 'Algunos sistemas están inoperativos!' : 'Todos los sistemas están operativos!'}"></h1>
     </div>
@@ -36,7 +36,13 @@
                 </div>
 
                 <!-- URL justo debajo del título -->
-                <p class="url" th:if="${service.hidden}">
+                <p class="url" th:if="${service.hidden} and ${isLogged}">
+                    <a th:href="${'https://'} + ${service.url}" class="service-link" target="_blank"
+                       rel="noopener noreferrer">
+                        <span th:text="${service.url}">URL del servicio</span>
+                    </a>
+                </p>
+                <p class="url" th:if="${service.hidden} and !${isLogged}">
                     <a class="hidden-url">*****</a>
                 </p>
                 <p class="url" th:if="${!service.hidden}">
