@@ -13,9 +13,20 @@
 <main>
     <div class="banner">
         <img src="https://inwfile.com/s-o/7f0qz1.png" alt="Logo" class="logo">
-        <a th:href="${isLogged ? '/logout' : '/login'}" class="login-button">
-            <i th:class="${isLogged ? 'fas fa-sign-out-alt' : 'fas fa-sign-in-alt'}"></i>
-        </a>
+
+        <!-- Contenedor para los botones -->
+        <div class="button-group">
+            <!-- Botón de acceso al dashboard del admin -->
+            <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/admin/dashboard}"
+               class="admin-dashboard-button">
+                <i class="fas fa-tachometer-alt"></i>Dashboard
+            </a>
+
+            <!-- Botón de login/logout -->
+            <a th:href="${isLogged ? '/logout' : '/login'}" class="login-button">
+                <i th:class="${isLogged ? 'fas fa-sign-out-alt' : 'fas fa-sign-in-alt'}"></i>
+            </a>
+        </div>
 
         <div class="check-icon">
             <i class="fas"

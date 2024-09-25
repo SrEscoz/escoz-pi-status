@@ -47,26 +47,42 @@ main {
     height: auto;
 }
 
-.login-button {
+/* Estilo para agrupar los botones de admin y login */
+.button-group {
     position: absolute;
-    top: 20px; /* Espacio desde la parte superior */
-    right: 20px; /* Espacio desde la derecha */
-    padding: 10px; /* Espacio interno del botón */
-    background-color: var(--accent-color); /* Color de fondo */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
-    text-decoration: none; /* Sin subrayado */
-    font-size: 1rem; /* Tamaño de fuente */
-    display: flex; /* Para centrar el ícono */
-    align-items: center; /* Alinear verticalmente el ícono */
-    justify-content: center; /* Alinear horizontalmente el ícono */
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px; /* Espaciado entre los botones */
+}
+
+.admin-dashboard-button:hover {
+    background-color: #7e1529;
+}
+
+.admin-dashboard-button i {
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+/* Botón de login/logout (heredado del diseño anterior) */
+.login-button, .admin-dashboard-button {
+    padding: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-button:hover {
-    background-color: #7e1529; /* Cambia el color de fondo al pasar el mouse */
+    background-color: #7e1529;
 }
+
 
 .login-button i {
     color: white; /* Color normal del ícono */
