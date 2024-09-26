@@ -7,6 +7,7 @@
     --status-warning: #d7975d;
     --status-error: #ef4c4c; /* Color para errores */
     --accent-color: #c21e43; /* Color de acento */
+    --button-blue: #3a58be;
 }
 
 html, body {

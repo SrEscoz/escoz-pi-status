@@ -1,14 +1,3 @@
-:root {
-    --bg-color: #0D1117;
-    --text-color: #C9D1D9;
-    --banner-bg: #161B22;
-    --status-operational: #22D07A;
-    --status-down: #ef4c4c;
-    --status-warning: #d7975d;
-    --status-error: #ef4c4c; /* Color para errores */
-    --accent-color: #c21e43; /* Color de acento */
-}
-
 html, body {
     height: 100%;
     margin: 0;

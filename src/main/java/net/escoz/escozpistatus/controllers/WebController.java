@@ -33,8 +33,19 @@ public class WebController {
 
 	@RequestMapping("/admin/dashboard")
 	public String adminDashboard(Model model) {
+		List<PiService> piServices = piServiceService.getAllServices();
 
-		return "error";
+		model.addAttribute("services", PiServiceMapper.INSTANCE.toDTOList(piServices));
+
+		return "adminDashboard";
+	}
+
+	@RequestMapping("/admin/add/service")
+	public String createService(Model model) {
+		model.addAttribute("isEdit", false);
+		model.addAttribute("service", new PiService());
+
+		return "addService";
 	}
 
 }
