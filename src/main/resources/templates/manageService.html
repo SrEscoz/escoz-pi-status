@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EscozPi - Nuevo servicio</title>
+    <link rel="icon" type="image/png" href="https://inwfile.com/s-o/7f0qz1.png" sizes="16x16">
+    <title>EscozPi - Servicios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
@@ -58,7 +59,7 @@
     </div>
 </main>
 
-<script>
+<script th:inline="javascript">
     document.getElementById('entityForm').addEventListener('submit', function (event) {
         event.preventDefault(); // Previene el envío por defecto del formulario
 
@@ -70,10 +71,13 @@
             hidden: document.getElementById('hidden').checked
         };
 
-        const url = /*[[${isEdit}]]*/ '/v1/services'; // Cambia '1' a un valor adecuado si necesitas el id en Thymeleaf
+        const isEdit = /*[[${isEdit}]]*/ false
+        const id = /*[[${service.id}]]*/ 0
+
+        const url = isEdit ? '/v1/services/' + id : '/v1/services';
 
         fetch(url, {
-            method: 'POST',
+            method: isEdit ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json' // Indica que se está enviando JSON
             },
@@ -85,9 +89,12 @@
                 }
                 return response.json(); // Procesa la respuesta como JSON
             })
-            .then(data => {
+            .then(() => {
                 // Mostrar mensaje de éxito
-                document.querySelector('.success-message').textContent = "¡Servicio añadido correctamente!";
+                document.querySelector('.success-message').textContent = (isEdit)
+                    ? "Servicio actualizado correctamente!"
+                    : "Servicio añadido correctamente";
+
                 document.querySelector('.success-message').style.display = 'block';
                 document.querySelector('.error-message').style.display = 'none';
 
@@ -99,9 +106,9 @@
                     document.querySelector('.success-message').style.display = 'none';
                 }, 1500);
             })
-            .catch(error => {
+            .catch(() => {
                 // Mostrar mensaje de error
-                document.querySelector('.error-message').textContent = "Error: " + error.message;
+                document.querySelector('.error-message').textContent = "Error en la petición!";
                 document.querySelector('.error-message').style.display = 'block';
                 document.querySelector('.success-message').style.display = 'none';
 

@@ -7,6 +7,7 @@ import net.escoz.escozpistatus.services.PiServiceService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -45,7 +46,17 @@ public class WebController {
 		model.addAttribute("isEdit", false);
 		model.addAttribute("service", new PiService());
 
-		return "addService";
+		return "manageService";
+	}
+
+	@RequestMapping("/admin/edit/service/{id}")
+	public String editService(Model model, @PathVariable String id) {
+		PiService piService = piServiceService.getService(Long.parseLong(id));
+
+		model.addAttribute("isEdit", true);
+		model.addAttribute("service", piService);
+
+		return "manageService";
 	}
 
 }
