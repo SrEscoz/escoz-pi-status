@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EscozPi - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+
+<script>
+    function deleteService(id) {
+        const url = `/v1/services/${id}`;
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json' // Indica que se está enviando JSON
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Manejo de errores
+                alert('Error al eliminar el servicio: ' + error.message);
+            });
+    }
+</script>
+
+<main class="admin-panel">
+    <!-- Banner superior -->
+    <div class="banner">
+        <img src="https://inwfile.com/s-o/7f0qz1.png" alt="Logo" class="logo">
+        <h1>Panel de Administración</h1>
+    </div>
+
+    <!-- Encabezado con botones -->
+    <header class="admin-header">
+        <!-- Botón de Home -->
+        <a href="/" class="home-button">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+
+        <!-- Botón de crear nueva entidad -->
+        <a href="/admin/add/service" class="create-button">
+            <i class="fas fa-plus"></i> Nuevo servicio
+        </a>
+    </header>
+
+    <!-- Lista de entidades -->
+    <div class="entity-list">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Activo</th>
+                <th>Oculto</th>
+                <th>URL</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Suponiendo que se rellena dinámicamente con Thymeleaf o similar -->
+            <tr th:each="service : ${services}">
+                <td th:text="${service.id}">1</td>
+                <td th:text="${service.name}">Nombre de la Entidad</td>
+                <td th:text="${service.description}">Descripción</td>
+                <td>
+                    <i th:class="${service.active ? 'fas fa-check status-operational' : 'fas fa-times status-down'}"></i>
+                </td>
+                <td>
+                    <i th:class="${service.hidden ? 'fas fa-eye-slash status-warning' : 'fas fa-eye status-operational'}"></i>
+                </td>
+                <td>
+                    <a th:href="${'https://'} + ${service.url}" class="service-link" target="_blank"
+                       th:text="${service.url}">URL</a>
+                </td>
+                <td>
+                    <a th:href="@{/admin/edit/service/{id}(id=${service.id})}" class="edit-button">
+                        <i class="fas fa-pencil-alt"></i></a>
+                </td>
+                <td>
+                    <a href="#" class="delete-button" th:onclick="deleteService([[${service.id}]])">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

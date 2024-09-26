@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://inwfile.com/s-o/7f0qz1.png" sizes="16x16">
+    <title>EscozPi - Servicios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/addService.css}">
+</head>
+<body>
+<main class="admin-panel">
+
+    <!-- Contenedor que envuelve el botón y la tarjeta -->
+    <div class="form-container">
+        <!-- Botón de atrás colocado antes de la tarjeta -->
+        <button type="button" class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> Atrás
+        </button>
+
+        <div class="form-card"> <!-- Tarjeta para el formulario -->
+            <div class="banner"> <!-- Integramos el banner en la tarjeta -->
+                <h1 th:text="${isEdit ? 'Editar servicio' : 'Nuevo servicio'}"></h1>
+            </div>
+            <form id="entityForm">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" th:value="${service.name}" required>
+
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" required th:text="${service.description}"></textarea>
+
+                <label for="url">URL</label>
+                <input type="text" id="url" name="url" th:value="${service.url}" required>
+
+
+                <label class="checkbox-group">
+                    <input type="checkbox" id="active" name="active" th:checked="${service.active}">
+                    <span class="custom-checkbox"></span>
+                    Servicio operativo
+                </label>
+
+                <!-- Grupo de checkbox para 'Oculto' -->
+                <label class="checkbox-group">
+                    <input type="checkbox" id="hidden" name="hidden" th:checked="${service.hidden}">
+                    <span class="custom-checkbox"></span>
+                    Servicio privado
+                </label>
+
+                <!-- Botón de guardar dentro de la tarjeta -->
+                <button type="submit" class="submit-button">Guardar</button>
+
+                <div id="messageContainer">
+                    <div class="error-message" style="display: none;"></div>
+                    <div class="success-message" style="display: none;"></div>
+                </div>
+            </form>
+        </div> <!-- Fin de tarjeta para el formulario -->
+    </div>
+</main>
+
+<script th:inline="javascript">
+    document.getElementById('entityForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Previene el envío por defecto del formulario
+
+        const formData = {
+            name: document.getElementById('name').value,
+            description: document.getElementById('description').value,
+            url: document.getElementById('url').value,
+            active: document.getElementById('active').checked,
+            hidden: document.getElementById('hidden').checked
+        };
+
+        const isEdit = /*[[${isEdit}]]*/ false
+        const id = /*[[${service.id}]]*/ 0
+
+        const url = isEdit ? '/v1/services/' + id : '/v1/services';
+
+        fetch(url, {
+            method: isEdit ? 'PUT' : 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Indica que se está enviando JSON
+            },
+            body: JSON.stringify(formData) // Convierte el objeto a una cadena JSON
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.json(); // Procesa la respuesta como JSON
+            })
+            .then(() => {
+                // Mostrar mensaje de éxito
+                document.querySelector('.success-message').textContent = (isEdit)
+                    ? "Servicio actualizado correctamente!"
+                    : "Servicio añadido correctamente";
+
+                document.querySelector('.success-message').style.display = 'block';
+                document.querySelector('.error-message').style.display = 'none';
+
+                // Limpiar los campos del formulario
+                document.getElementById('entityForm').reset();
+
+                // Ocultar el mensaje después de 3 segundos (3000 ms)
+                setTimeout(() => {
+                    document.querySelector('.success-message').style.display = 'none';
+                }, 1500);
+            })
+            .catch(() => {
+                // Mostrar mensaje de error
+                document.querySelector('.error-message').textContent = "Error en la petición!";
+                document.querySelector('.error-message').style.display = 'block';
+                document.querySelector('.success-message').style.display = 'none';
+
+                setTimeout(() => {
+                    document.querySelector('.error-message').style.display = 'none';
+                }, 1500);
+            });
+    });
+</script>
+</body>
+</html>

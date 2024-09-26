@@ -1,0 +1,200 @@
+/* Centrar el contenido de la página */
+.admin-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0D1117;
+}
+
+/* Contenedor que envuelve el botón y la tarjeta */
+.form-container {
+    width: 50%;
+    max-width: 600px; /* Ancho máximo */
+    display: flex;
+    flex-direction: column; /* Organiza el botón y la tarjeta en columnas */
+    align-items: flex-start; /* Alinea el botón y la tarjeta a la izquierda */
+}
+
+/* Estilo del botón de atrás */
+.back-button {
+    margin-bottom: 10px; /* Añadimos un margen para separar del formulario */
+    padding: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #7e1529;
+}
+
+/* Estilos para la tarjeta del formulario */
+.form-card {
+    background-color: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%; /* La tarjeta ocupa el ancho del contenedor padre */
+    text-align: center;
+}
+
+/* Banner más pequeño y con nuevo color */
+.banner {
+    background-color: #21262D;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.banner h1 {
+    color: var(--text-color);
+    font-size: large;
+    margin: 0;
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Contenedor para alinear labels e inputs en filas */
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--text-color);
+    flex: 1;
+    text-align: left;
+}
+
+/* Inputs alineados */
+input[type="text"],
+textarea {
+    padding: 10px;
+    border: 1px solid #30363D;
+    border-radius: 5px;
+    background-color: #161B22;
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+    flex: 2;
+}
+
+textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+/* Botón de enviar */
+.submit-button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+/* Mensajes de éxito y error */
+.error-message {
+    color: #ef4c4c;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: #22D07A;
+    margin-top: 10px;
+}
+
+/* Alinear los checkboxes y sus etiquetas */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Contenedor del checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer; /* Cambiamos el cursor para que sea interactivo */
+    user-select: none; /* Evitamos que el texto sea seleccionable */
+}
+
+/* Ocultamos el input checkbox */
+.checkbox-group input[type="checkbox"] {
+    display: none;
+}
+
+/* Estilos para el checkbox personalizado */
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color); /* Color de borde del checkbox */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transiciones suaves */
+    cursor: pointer;
+}
+
+/* Estilo cuando el checkbox está marcado */
+.checkbox-group input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: var(--accent-color); /* Fondo cuando está activo */
+    border-color: var(--accent-color); /* Cambiamos el color del borde */
+}
+
+/* Icono de check cuando está marcado */
+.custom-checkbox::after {
+    content: '✓'; /* Utilizamos un icono de check */
+    color: white;
+    font-size: 16px;
+    display: none; /* Por defecto, el check no es visible */
+}
+
+/* Mostrar el check cuando está marcado */
+.checkbox-group input[type="checkbox"]:checked + .custom-checkbox::after {
+    display: block; /* Mostramos el check */
+}
+
+/* Hover sobre el checkbox para mejorar la interacción */
+.custom-checkbox:hover {
+    border-color: #7e1529; /* Cambiamos el color del borde al pasar el ratón */
+}
+
+/* Opcional: Ajustamos el estilo del label */
+.checkbox-group label {
+    font-size: 16px;
+    color: var(--text-color);
+    cursor: pointer; /* Añadimos interacción al label */
+}
+

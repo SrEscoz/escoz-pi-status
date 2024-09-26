@@ -22,7 +22,7 @@ import java.util.Objects;
 
 
 @RestController
-@RequestMapping("/services")
+@RequestMapping("/v1/services")
 @AllArgsConstructor
 public class PiServiceController {
 	private static final Logger LOG = LoggerFactory.getLogger(PiServiceController.class);
@@ -53,7 +53,7 @@ public class PiServiceController {
 
 	@PostMapping
 	public ResponseEntity<PiServiceOutDTO> addService(@RequestBody @Valid PiServiceInDTO piServiceInDTO,
-													  BindingResult bindingResult) {
+	                                                  BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			String field = Objects.requireNonNull(bindingResult.getFieldError()).getField();
@@ -70,8 +70,8 @@ public class PiServiceController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<PiService> updateService(@PathVariable long id,
-												   @Valid @RequestBody PiServiceInDTO piServiceInDTO,
-												   BindingResult bindingResult) {
+	                                               @Valid @RequestBody PiServiceInDTO piServiceInDTO,
+	                                               BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			String field = Objects.requireNonNull(bindingResult.getFieldError()).getField();
