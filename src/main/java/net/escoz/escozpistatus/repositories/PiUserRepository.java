@@ -1,6 +1,6 @@
 package net.escoz.escozpistatus.repositories;
 
-import net.escoz.escozpistatus.entities.PiUser;
+import net.escoz.escozpistatus.models.PiUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

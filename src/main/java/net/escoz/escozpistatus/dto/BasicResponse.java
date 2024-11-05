@@ -1,4 +1,4 @@
-package net.escoz.escozpistatus.models;
+package net.escoz.escozpistatus.dto;
 
 public record BasicResponse(int status, String message) {
 

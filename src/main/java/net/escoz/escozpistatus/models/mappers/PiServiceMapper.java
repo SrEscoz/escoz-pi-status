@@ -1,8 +1,8 @@
-package net.escoz.escozpistatus.entities.mappers;
+package net.escoz.escozpistatus.models.mappers;
 
-import net.escoz.escozpistatus.entities.PiService;
-import net.escoz.escozpistatus.models.requests.PiServiceInDTO;
-import net.escoz.escozpistatus.models.responses.PiServiceOutDTO;
+import net.escoz.escozpistatus.models.PiService;
+import net.escoz.escozpistatus.dto.requests.PiServiceInDTO;
+import net.escoz.escozpistatus.dto.responses.PiServiceOutDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

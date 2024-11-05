@@ -1,7 +1,7 @@
 package net.escoz.escozpistatus.services.impl;
 
 import lombok.AllArgsConstructor;
-import net.escoz.escozpistatus.entities.PiService;
+import net.escoz.escozpistatus.models.PiService;
 import net.escoz.escozpistatus.exceptions.DuplicateEntityException;
 import net.escoz.escozpistatus.exceptions.EntityNotFoundException;
 import net.escoz.escozpistatus.repositories.PiServiceRepository;

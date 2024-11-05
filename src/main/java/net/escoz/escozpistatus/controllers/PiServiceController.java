@@ -2,12 +2,12 @@ package net.escoz.escozpistatus.controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import net.escoz.escozpistatus.entities.PiService;
-import net.escoz.escozpistatus.entities.mappers.PiServiceMapper;
+import net.escoz.escozpistatus.models.PiService;
+import net.escoz.escozpistatus.models.mappers.PiServiceMapper;
 import net.escoz.escozpistatus.exceptions.InvalidArgumentException;
-import net.escoz.escozpistatus.models.BasicResponse;
-import net.escoz.escozpistatus.models.requests.PiServiceInDTO;
-import net.escoz.escozpistatus.models.responses.PiServiceOutDTO;
+import net.escoz.escozpistatus.dto.BasicResponse;
+import net.escoz.escozpistatus.dto.requests.PiServiceInDTO;
+import net.escoz.escozpistatus.dto.responses.PiServiceOutDTO;
 import net.escoz.escozpistatus.services.PiServiceService;
 import net.escoz.escozpistatus.utils.Utils;
 import org.slf4j.Logger;

@@ -1,6 +1,5 @@
-package net.escoz.escozpistatus.models.requests;
+package net.escoz.escozpistatus.dto.responses;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,18 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PiServiceInDTO {
+public class PiServiceOutDTO {
 
-	@NotBlank
+	private long id;
 	private String name;
-
 	private String description;
-
 	private Boolean active;
-
 	private Boolean hidden;
-
-	@NotBlank
 	private String url;
 
 }

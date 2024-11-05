@@ -1,8 +1,8 @@
 package net.escoz.escozpistatus.controllers;
 
 import lombok.AllArgsConstructor;
-import net.escoz.escozpistatus.entities.PiService;
-import net.escoz.escozpistatus.entities.mappers.PiServiceMapper;
+import net.escoz.escozpistatus.models.PiService;
+import net.escoz.escozpistatus.models.mappers.PiServiceMapper;
 import net.escoz.escozpistatus.services.PiServiceService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

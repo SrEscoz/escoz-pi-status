@@ -1,6 +1,6 @@
 package net.escoz.escozpistatus.services;
 
-import net.escoz.escozpistatus.entities.PiService;
+import net.escoz.escozpistatus.models.PiService;
 
 import java.util.List;
 

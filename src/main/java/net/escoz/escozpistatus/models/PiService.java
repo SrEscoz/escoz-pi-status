@@ -1,4 +1,4 @@
-package net.escoz.escozpistatus.entities;
+package net.escoz.escozpistatus.models;
 
 
 import jakarta.persistence.*;

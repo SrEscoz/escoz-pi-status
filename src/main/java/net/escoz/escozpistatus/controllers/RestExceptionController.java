@@ -3,7 +3,7 @@ package net.escoz.escozpistatus.controllers;
 import net.escoz.escozpistatus.exceptions.DuplicateEntityException;
 import net.escoz.escozpistatus.exceptions.EntityNotFoundException;
 import net.escoz.escozpistatus.exceptions.InvalidArgumentException;
-import net.escoz.escozpistatus.models.ErrorResponse;
+import net.escoz.escozpistatus.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

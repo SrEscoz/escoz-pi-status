@@ -1,7 +1,7 @@
 package net.escoz.escozpistatus.services;
 
 import lombok.AllArgsConstructor;
-import net.escoz.escozpistatus.entities.PiUser;
+import net.escoz.escozpistatus.models.PiUser;
 import net.escoz.escozpistatus.repositories.PiUserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
